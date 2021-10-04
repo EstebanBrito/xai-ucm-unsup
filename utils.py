@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 
 from settings import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH
 
@@ -21,3 +22,15 @@ def save_features_to_file(values, row_labels, col_labels, file_path):
     dataframe = pd.DataFrame(data=values, index=row_labels, columns=col_labels)
     dataframe.to_csv(file_path)
     return dataframe
+
+def comp_color_hist(img):
+    freqs_global = np.zeros((256*3), dtype='uint32')
+    for k in range(img.shape[2]):
+        freqs_comp = np.zeros((256), dtype='uint32')
+        for i in range(img.shape[1]):
+            for j in range(img.shape[0]):
+                value = img[i,j,k]
+                freqs_comp[value] += 1
+        start, end = k*256, (k+1)*256
+        freqs_global[start:end] = freqs_comp
+    return freqs_global 
