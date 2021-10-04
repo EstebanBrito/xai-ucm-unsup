@@ -3,10 +3,12 @@ import numpy as np
 import os
 
 from models import load_model, load_imagenet_labels, fetch_model_specs, logits_to_probs
-from utils import load_images_paths, save_features_to_file
+from utils import load_images_paths, save_features_to_file, setup_folder_structure
 from image_utils import read_image_tf, preproc_image_incv1
 from settings import FEATURES_FOLDER_PATH
 
+# Create neccesary folders
+setup_folder_structure()
 # Load model, model specs and labels
 model = load_model('incv1probs')
 labels = load_imagenet_labels()

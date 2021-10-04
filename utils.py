@@ -1,10 +1,11 @@
 import os
 import pandas as pd
 
-from settings import IMGS_FOLDER_PATH
+from settings import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH
 
 def setup_folder_structure():
-    pass
+    if not os.path.isdir(FEATURES_FOLDER_PATH):
+        os.mkdir(FEATURES_FOLDER_PATH)
 
 def craft_path_to_curr_dir(name):
     return os.path.join('.', name)
