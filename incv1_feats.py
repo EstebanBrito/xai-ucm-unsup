@@ -1,4 +1,3 @@
-import tensorflow as tf
 import numpy as np
 import os
 
@@ -16,7 +15,7 @@ model_specs = fetch_model_specs('incv1feats')
 images_paths = load_images_paths()
 # Create features array
 output_size = model_specs['output_size']
-features = np.zeros(shape=(len(images_paths), output_size[1]))
+features = np.zeros(shape=(len(images_paths), output_size[1]), dtype='float32')
 # For each image path...
 i = 0
 for image_name, image_path in images_paths.items():
@@ -25,7 +24,7 @@ for image_name, image_path in images_paths.items():
     image = preproc_image_incv1(image)
     feats = model(image)
     # DEBUG
-    feats.shape
+    print(image_name)
     # Store features in features array
     features[i] = feats.numpy()
     i += 1

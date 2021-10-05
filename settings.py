@@ -18,7 +18,7 @@ MODELS_SPECS = {
 IMAGENET_LABELS_URL = 'https://storage.googleapis.com/download.tensorflow.org/data/ImageNetLabels.txt'
 
 # FOLDER STRUCTURE
-IMGS_FOLDER_NAME = 'test_imgs'
+IMGS_FOLDER_NAME = 'imgs'
 FEATURES_FOLDER_NAME = 'features'
 IMGS_FOLDER_PATH = os.path.join('.', IMGS_FOLDER_NAME)
 FEATURES_FOLDER_PATH = os.path.join('.', FEATURES_FOLDER_NAME)

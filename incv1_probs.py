@@ -1,4 +1,3 @@
-import tensorflow as tf
 import numpy as np
 import os
 
@@ -17,7 +16,7 @@ model_specs = fetch_model_specs('incv1probs')
 images_paths = load_images_paths()
 # Create features array
 output_size = model_specs['output_size']
-features = np.zeros(shape=(len(images_paths), output_size[1]))
+features = np.zeros(shape=(len(images_paths), output_size[1]), dtype='float32')
 # For each image path...
 i = 0
 for image_name, image_path in images_paths.items():
@@ -28,7 +27,7 @@ for image_name, image_path in images_paths.items():
     probs = logits_to_probs(preds)
     # DEBUG
     top = probs.numpy().argmax()
-    print(top, labels[top])
+    print(image_name, labels[top])
     # Store features in features array
     features[i] = probs
     i += 1

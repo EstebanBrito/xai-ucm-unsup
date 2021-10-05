@@ -141,3 +141,4 @@ cython_debug/
 ### PROYECT STUFF
 features/
 test_imgs/
+imgs/

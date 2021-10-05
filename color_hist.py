@@ -17,6 +17,8 @@ for image_name, image_path in images_paths.items():
     # ... read the image and gen. features from it
     image = imread(image_path)
     hist = comp_color_hist(image)
+    # DEBUG
+    print(image_name)
     # Store features in features array
     features[i] = hist
     i += 1
