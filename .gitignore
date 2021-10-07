@@ -139,6 +139,8 @@ cython_debug/
 
 
 ### PROYECT STUFF
-features/
+features/*.csv
 test_imgs/
-imgs/
+imgs/*.jpg
+imgs/*.jpeg
+imgs/*.png
