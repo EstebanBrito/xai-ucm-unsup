@@ -29,8 +29,8 @@ def comp_color_hist(img):
     freqs_global = np.zeros((256*3), dtype='uint32')
     for k in range(img.shape[2]):
         freqs_comp = np.zeros((256), dtype='uint32')
-        for i in range(img.shape[1]):
-            for j in range(img.shape[0]):
+        for i in range(img.shape[0]):
+            for j in range(img.shape[1]):
                 value = img[i,j,k]
                 freqs_comp[value] += 1
         start, end = k*256, (k+1)*256
