@@ -140,7 +140,10 @@ cython_debug/
 
 ### PROYECT STUFF
 features/*.csv
+features/*.xls
 test_imgs/
 imgs/*.jpg
 imgs/*.jpeg
 imgs/*.png
+matrices/*.csv
+matrices/*.xls

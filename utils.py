@@ -2,13 +2,15 @@ import os
 import pandas as pd
 import numpy as np
 
-from settings import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH
+from settings import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH, MATRICES_FOLDER_PATH
 
 def setup_folder_structure():
     if not os.path.isdir(IMGS_FOLDER_PATH):
         os.mkdir(IMGS_FOLDER_PATH)
     if not os.path.isdir(FEATURES_FOLDER_PATH):
         os.mkdir(FEATURES_FOLDER_PATH)
+    if not os.path.isdir(MATRICES_FOLDER_PATH):
+        os.mkdir(MATRICES_FOLDER_PATH)
 
 def craft_path_to_curr_dir(name):
     return os.path.join('.', name)
