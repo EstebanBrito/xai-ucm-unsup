@@ -17,7 +17,12 @@ def class_similarity(a, b, is_same_vector=False):
     res = a + b
     return  sqrt(np.sum(res*res))
 
+def cosine_similarity(a, b, is_same_vector=False):
+    if is_same_vector: return 1.0
+    else: return np.dot(a, b)/(np.linalg.norm(a) * np.linalg.norm(b))
+
 sim_functions = {
     'euclidean_distance': euclidean_distance,
-    'class_similarity': class_similarity
+    'class_similarity': class_similarity,
+    'cosine_similarity': cosine_similarity
 }
