@@ -10,3 +10,8 @@ def preproc_image_incv1(image):
     image = tf.image.resize_with_pad(image, target_height=224, target_width=224)
     image = tf.expand_dims(image, axis=0)
     return image
+
+def preproc_image_incv3(image):
+    image = tf.image.resize_with_pad(image, target_height=299, target_width=299)
+    image = tf.expand_dims(image, axis=0)
+    return image
