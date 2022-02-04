@@ -30,3 +30,17 @@ MATRICES_FOLDER_NAME = 'matrices'
 IMGS_FOLDER_PATH = os.path.join('.', IMGS_FOLDER_NAME)
 FEATURES_FOLDER_PATH = os.path.join('.', FEATURES_FOLDER_NAME)
 MATRICES_FOLDER_PATH = os.path.join('.', MATRICES_FOLDER_NAME)
+
+# ARTIFACT NAMES ("key to description" dictionaries)
+FEATURES_NAMES = {
+    'incv3latfeats': 'InceptionV3 Latent Features',
+    'incv1latfeats': 'InceptionV1 Latent Features',
+    'colorhist': 'Color Histogram',
+    'pixels': 'Pixels (select for SSIM)'
+}
+
+SIM_METRICS_NAMES = {
+    'euclid': 'Euclidian Distance',
+    'cosine': 'Cosine Similarity',
+    'ssim': 'Structural Similarity (SSIM)',
+}
