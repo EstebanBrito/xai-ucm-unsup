@@ -44,3 +44,12 @@ SIM_METRICS_NAMES = {
     'cosine': 'Cosine Similarity',
     'ssim': 'Structural Similarity (SSIM)',
 }
+
+UNALLOWED_COMBINATIONS = (
+    ('incv3latfeats', 'ssim'),
+    ('incv1latfeats', 'ssim'),
+    ('colorhist', 'ssim'),
+    ('pixels', 'euclid'),
+    ('pixels', 'cosine'),
+    ('pixels', 'ssim'),
+)

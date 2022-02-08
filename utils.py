@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 
-from settings import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH, MATRICES_FOLDER_PATH, FEATURES_NAMES, SIM_METRICS_NAMES
+from settings import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH, MATRICES_FOLDER_PATH, FEATURES_NAMES, SIM_METRICS_NAMES, UNALLOWED_COMBINATIONS
 
 def setup_folder_structure():
     if not os.path.isdir(IMGS_FOLDER_PATH):
@@ -80,4 +80,9 @@ def select_feat_generation_params():
     clear_screen()
     sel_sim_key = select_sim_metric_params()
     clear_screen()
+    if (sel_feat_key, sel_sim_key) in UNALLOWED_COMBINATIONS:
+        print('This combination of features is not allowed/supported:')
+        print(f'- {FEATURES_NAMES[sel_feat_key]} with {SIM_METRICS_NAMES[sel_sim_key]}')
+        print('Please, run the script again and choose avaliable options...')
+        exit(0)
     return sel_feat_key, sel_sim_key

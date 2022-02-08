@@ -147,3 +147,5 @@ imgs/*.jpeg
 imgs/*.png
 matrices/*.csv
 matrices/*.xls
+test.py
+scripts/test.py
