@@ -3,15 +3,15 @@ import os
 
 from ..utils.models import load_model, load_imagenet_labels, fetch_model_specs, logits_to_probs
 from ..utils.utils import load_images_paths, save_features_to_file, setup_folder_structure
-from ..utils.image_utils import read_image_tf, preproc_image_incv1
+from ..utils.image_utils import read_image_tf, preproc_image_incv3
 from ..settings.folders import FEATURES_FOLDER_PATH
 
-def gen_incv1_feats():
+def gen_incv3_feats():
     # Create neccesary folders
     # setup_folder_structure()
     # Load model, model specs and labels
-    model = load_model('incv1feats')
-    model_specs = fetch_model_specs('incv1feats')
+    model = load_model('incv3feats')
+    model_specs = fetch_model_specs('incv3feats')
     # Load images paths
     images_paths = load_images_paths()
     # Create features array
@@ -22,7 +22,7 @@ def gen_incv1_feats():
     for image_name, image_path in images_paths.items():
         # ... read the image and gen. features from it
         image = read_image_tf(image_path)
-        image = preproc_image_incv1(image)
+        image = preproc_image_incv3(image)
         feats = model(image)
         # DEBUG
         print(image_name)
@@ -30,6 +30,5 @@ def gen_incv1_feats():
         features[i] = feats.numpy()
         i += 1
     # Save features to file
-    file_path = os.path.join(FEATURES_FOLDER_PATH, 'incv1_feats.csv')
-    print(file_path)
-    save_features_to_file(features, images_paths.keys(), range(1024), file_path)
+    file_path = os.path.join(FEATURES_FOLDER_PATH, 'incv3_feats.csv')
+    save_features_to_file(features, images_paths.keys(), range(2048), file_path)
