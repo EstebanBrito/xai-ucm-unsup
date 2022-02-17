@@ -1,6 +1,8 @@
 import os
 
-from ..settings.features_and_metrics import FEATURES_NAMES, SIM_METRICS_NAMES, UNALLOWED_COMBINATIONS
+from ..settings.features_and_metrics import FEATURE_OPTIONS, SIM_METRICS_NAMES, UNALLOWED_COMBINATIONS
+
+YES, NO = 1, 0
 
 def clear_screen(): os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -9,13 +11,23 @@ def select_option():
     except Exception: return -1
     else: return opt   
 
+def select_rewrite():
+    print('A file associated with this option was found.')
+    print('[ 0 ] - Keep file')
+    print('[ Any other digit ] - Rewrite the file')
+    while True:
+        opt = select_option()
+        if opt==-1: print('    Select a valid option. Try again.')
+        elif opt==0: return 0
+        else: return 1
+
 def select_feat_gen_params():
-    selection_map = {i: feat_key for i, feat_key in enumerate(FEATURES_NAMES.keys())}
+    selection_map = {i: feat_key for i, feat_key in enumerate(FEATURE_OPTIONS.keys())}
     print('Please, select what kind of features you want to use')
     print('to use in the process...')
     print()
     for opt_key, feat_key in selection_map.items():
-        print(f'[ {opt_key} ] --- {FEATURES_NAMES[feat_key]}')
+        print(f"[ {opt_key} ] --- {FEATURE_OPTIONS[feat_key]['description']}")
     while True:
         sel_opt_key = select_option()
         if sel_opt_key in selection_map.keys(): break
@@ -45,7 +57,7 @@ def select_feat_and_sim_mx_gen_params():
     clear_screen()
     if (sel_feat_key, sel_sim_key) in UNALLOWED_COMBINATIONS:
         print('This combination of features is not allowed/supported:')
-        print(f'- {FEATURES_NAMES[sel_feat_key]} with {SIM_METRICS_NAMES[sel_sim_key]}')
+        print(f'- {FEATURE_OPTIONS[sel_feat_key].description} with {SIM_METRICS_NAMES[sel_sim_key]}')
         print('Please, run the script again and choose avaliable options...')
         exit(0)
     return sel_feat_key, sel_sim_key

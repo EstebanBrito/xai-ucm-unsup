@@ -2,14 +2,6 @@ import os
 
 from .folders import FEATURES_FOLDER_PATH
 
-# ARTIFACT NAMES ("key to description" dictionaries)
-FEATURES_NAMES = {
-    'incv3latfeats': 'InceptionV3 Latent Features',
-    'incv1latfeats': 'InceptionV1 Latent Features',
-    'colorhist': 'Color Histogram',
-    'pixels': 'Pixels (select for SSIM)'
-}
-
 FEATURE_OPTIONS = {
     'incv1latfeats': {
         'description': 'InceptionV1 Latent Features',
@@ -24,7 +16,7 @@ FEATURE_OPTIONS = {
         'output_file_path': os.path.join(FEATURES_FOLDER_PATH, 'incv3_feats.csv')
     },
     'colorhist': {
-        'description': 'Description',
+        'description': 'Color Histograms',
         'type': 'hist-based',
         'output_file_path': os.path.join(FEATURES_FOLDER_PATH, 'color_hist.csv')
     }
