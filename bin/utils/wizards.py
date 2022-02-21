@@ -1,6 +1,7 @@
 import os
 
-from ..settings.features_and_metrics import FEATURE_OPTIONS, SIM_OPTIONS, UNALLOWED_COMBINATIONS
+from ..utils.utils import get_sim_options, get_feat_options
+from ..settings.features_and_metrics import FEATURE_OPTIONS, SIM_OPTIONS
 
 YES, NO = 1, 0
 
@@ -54,17 +55,17 @@ def select_sim_mx_gen_params():
         else: print('Unavailable option. Try again.')
     return selection_map[sel_opt_key]
 
-def select_feat_and_sim_mx_gen_params():
+def select_sim_mx_and_feat_gen_params():
     '''Asks the user what kind of features are needed and returns 
     feature generation parameters for other functions to use'''
-    print('----SIMILARITY MATRIX GENERATION WIZARD----')
-    sel_feat_key = select_feat_gen_params()
-    clear_screen()
+    # Select similarity option
     sel_sim_key = select_sim_mx_gen_params()
     clear_screen()
-    if (sel_feat_key, sel_sim_key) in UNALLOWED_COMBINATIONS:
-        print('This combination of features is not allowed/supported:')
-        print(f'- {FEATURE_OPTIONS[sel_feat_key].description} with {SIM_OPTIONS[sel_sim_key]}')
-        print('Please, run the script again and choose avaliable options...')
-        exit(0)
-    return sel_feat_key, sel_sim_key
+    # Select feature option (if sim. option supports it)
+    sim_type = get_sim_options(sel_sim_key)['type']
+    if sim_type == 'feat-based':
+        sel_feat_key = select_feat_gen_params()
+        clear_screen()
+    else: sel_feat_key = None
+    # Return info
+    return sel_sim_key, sel_feat_key
