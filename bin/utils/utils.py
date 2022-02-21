@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 
 from ..settings.folders import IMGS_FOLDER_PATH, FEATURES_FOLDER_PATH, MATRICES_FOLDER_PATH
+from ..settings.features_and_metrics import FEATURE_OPTIONS, SIM_OPTIONS
 
 def setup_folder_structure():
     if not os.path.isdir(IMGS_FOLDER_PATH):
@@ -27,15 +28,6 @@ def save_features_to_file(values, row_labels, col_labels, file_path):
     dataframe.to_csv(file_path)
     return dataframe
 
-def comp_color_hist(img):
-    freqs_global = np.zeros((256*3), dtype='uint32')
-    for k in range(img.shape[2]):
-        freqs_comp = np.zeros((256), dtype='uint32')
-        for i in range(img.shape[0]):
-            for j in range(img.shape[1]):
-                value = img[i,j,k]
-                freqs_comp[value] += 1
-        start, end = k*256, (k+1)*256
-        freqs_global[start:end] = freqs_comp
-    return freqs_global 
+def get_feature_options(feat_opt_id): return FEATURE_OPTIONS[feat_opt_id].copy()
 
+def get_sim_options(sim_opt_id): return SIM_OPTIONS[sim_opt_id].copy()
