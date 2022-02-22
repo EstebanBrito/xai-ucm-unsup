@@ -40,14 +40,18 @@ SIM_OPTIONS = {
         'type': 'feat-based',
         'output_file_name_suffix': 'cosine_sim_matrix.csv'
     },
-    'class_sim': {
-        'description': 'Class Similarity',
-        'type': 'feat-based',
-        'output_file_name_suffix': 'class_sim_matrix.csv'
-    },
     'ssim': {
         'description': 'Structural Similarity (SSIM)',
         'type': 'image-based',
         'output_file_path': os.path.join(MATRICES_FOLDER_PATH, 'ssim_matrix.csv')
     },
 }
+
+# TODO: Ensure that on selection, only prob-based features appear if class_sim was selected
+'''
+'class_sim': {
+        'description': 'Class Similarity',
+        'type': 'feat-based',
+        'output_file_name_suffix': 'class_sim_matrix.csv'
+    },
+'''

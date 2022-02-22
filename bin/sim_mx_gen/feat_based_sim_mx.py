@@ -16,11 +16,16 @@ def create_matrix(values, labels, sim_opt_id):
 def calc_matrix_values(values, sim_function):
     length = values.shape[0]
     sim_matrix = np.zeros(shape=(length, length))
-    # Gen sim scores
+    # For each instance to instance permutation...
+    total_ops, op_count = ((length * length) + length) // 2, 0
+    total_ops_10_pct = total_ops // 10
     for i in range(length):
         for j in range(i, length):
+            # Calc. similarity between instances and store result into matrix
             sim_score = sim_function(values[i], values[j], i==j)
-            # Store into matrix
             sim_matrix[i][j] = sim_score
             sim_matrix[j][i] = sim_score
+            # Display progress
+            op_count += 1
+            if op_count % total_ops_10_pct == 0: print(f'{(op_count // total_ops_10_pct) * 10}% completed')
     return sim_matrix

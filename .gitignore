@@ -150,3 +150,4 @@ matrices/*.xls
 test.py
 scripts/test.py
 results/features/*.csv
+results/matrices/*.csv

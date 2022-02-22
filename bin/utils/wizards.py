@@ -1,6 +1,6 @@
 import os
 
-from ..utils.utils import get_sim_options, get_feat_options
+from ..utils.utils import get_feature_options, get_sim_options
 from ..settings.features_and_metrics import FEATURE_OPTIONS, SIM_OPTIONS
 
 YES, NO = 1, 0
@@ -12,11 +12,18 @@ def select_option():
     except Exception: return -1
     else: return opt   
 
-def select_rewrite(file_path, op_type):
+def select_rewrite(file_path, op_type, opt_id):
     if os.path.exists(file_path):
+        # Operation type
+        if op_type == 'sim_mx_gen':
+            opts = get_sim_options(opt_id)
+            oper = 'SIM. MATRIX GENERATION'
+        elif op_type == 'feat_gen':
+            opts = get_feature_options(opt_id)
+            oper = 'FEATURE GENERATION'
+        else: print('Unknown operation')
         # TODO: Make prompt message more clear
-        oper = 'SIM. MATRIX GENERATION' if op_type == 'sim_mx_gen' else 'FEATURE GENERATION'
-        print(f'A {oper} process was performed before using those options.')
+        print(f"A {oper} process was performed before using {opts['description']}")
         print(' Would you like to repeat this process or use the existing results?')
         print('[ 0 ] - Use existing results')
         print('[ 1 ] - Repeat process')
@@ -48,7 +55,7 @@ def select_sim_mx_gen_params():
     print('to use in the process...')
     print()
     for opt_key, sim_key in selection_map.items():
-        print(f'[ {opt_key} ] --- {SIM_OPTIONS[sim_key]}')
+        print(f"[ {opt_key} ] --- {SIM_OPTIONS[sim_key]['description']}")
     while True:
         sel_opt_key = select_option()
         if sel_opt_key in selection_map.keys(): break

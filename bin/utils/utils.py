@@ -31,3 +31,19 @@ def save_features_to_file(values, row_labels, col_labels, file_path):
 def get_feature_options(feat_opt_id): return FEATURE_OPTIONS[feat_opt_id].copy()
 
 def get_sim_options(sim_opt_id): return SIM_OPTIONS[sim_opt_id].copy()
+
+def craft_sim_mx_output_file_path(sim_opt_id, feat_opt_id):
+    sim_opts = get_sim_options(sim_opt_id)
+    if feat_opt_id == None: return sim_opts['output_file_path']
+    else:
+        sim_file_name_suffix = sim_opts['output_file_name_suffix']
+        feat_file_name_preffix = get_feature_options(feat_opt_id)['output_file_name']
+        sim_file_name = feat_file_name_preffix + '_' + sim_file_name_suffix
+        return os.path.join(MATRICES_FOLDER_PATH, sim_file_name)
+
+def get_sim_mx_input_path(sim_opt_id, feat_opt_id):
+    sim_type = get_sim_options(sim_opt_id)['type']
+    if sim_type == 'feat-based': return get_feature_options(feat_opt_id)['output_file_path']
+    elif sim_type == 'image-based': return IMGS_FOLDER_PATH
+    else: print('Unknown sim. metric type')
+
